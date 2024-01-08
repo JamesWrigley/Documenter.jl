@@ -930,6 +930,17 @@ function render_head(ctx, navnode)
         RD.fontawesome_css...,
         RD.katex_css,
     ]
+    collapse_script = ""
+    if get(getpage(ctx, navnode).globals.meta, :DocStringsCollapsed, false)
+        # if DocStringsCollapse = true in `@meta`, we let JavaScript click the
+        # collapse button after that page has loaded.
+        collapse_script = script("""
+        window.onload = function() {
+         var toggleButton = document.getElementById('documenter-article-toggle-button');
+         if (toggleButton) {toggleButton.click();}
+        };
+        """)
+    end
 
     head(
         meta[:charset=>"UTF-8"],
@@ -983,6 +994,7 @@ function render_head(ctx, navnode)
             return e
         end,
         script[:src => relhref(src, ctx.themeswap_js)],
+        collapse_script,
         # Custom user-provided assets.
         asset_links(src, ctx.settings.assets),
     )

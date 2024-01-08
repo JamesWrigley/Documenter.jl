@@ -282,7 +282,8 @@ page. Currently recognised keys:
   but if the source is something else (for example if the `.md` page is generated as part of
   the doc build) this can be set, either as a local link, or an absolute url.
 - `Description`: a page-specific description that gets displayed in search engines and
-  link previews. Overrides the site-wide description in [`makedocs`](@ref). 
+  link previews. Overrides the site-wide description in [`makedocs`](@ref).
+- `DocStringsCollapsed`: boolean to override whether docstrings should start out collapsed or expanded.
 - `Draft`: boolean for overriding the global draft mode for the page.
 
 Example:
